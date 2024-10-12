@@ -257,7 +257,6 @@ class compression:
                                                 T8, 2
                                             )  # Convert binary to decimal
                                             num = num - 1
-                                            print(num)
                                             if num == -1:
                                                 num = (2**24) - 1
                                             num_c = num
@@ -477,9 +476,6 @@ class compression:
                                                                     count_number
                                                                     - 1
                                                                 )
-                                                                if num_c==count_number+384:
-                                                                	count_number+=384
-                                                                #print(count_number)
                                                                 # print(length_tree)
                                                                 # print(count_number)
 
@@ -506,6 +502,7 @@ class compression:
                                                                     times_after,
                                                                     "05b",
                                                                 )
+                                                                #print(binary_representation_before_long1)
                                                                 # print(binary_representation_before)
                                                                 length_tree_after = format(
                                                                     binary_representation_before_long,
@@ -525,12 +522,24 @@ class compression:
                                                                 )
 
                                                                 # print(binary_representation_before)
-                                                                if num_c==count_number+384:
+                                                                if count_number+384==num_c:
+                                                                	count_number=count_number+384
+                                                                
 
-                                                                	IFC = (
-                                                                    "0"
-                                                                    +
-                                                                    "0"
+	                                                                IFC = (
+	                                                                    "0"+"0"
+	                                                                    + length_tree_after2
+	                                                                    + binary_representation
+	                                                                    + binary_representation_before_long1
+	                                                                    + length_tree_after
+	
+	                                                                )
+                                                                elif count_number==num_c:
+                                                                
+                                                                
+
+                                                                    IFC = (
+                                                                    "0"+"1"
                                                                     + length_tree_after2
                                                                     + binary_representation
                                                                     + binary_representation_before_long1
@@ -538,19 +547,7 @@ class compression:
 
                                                                 )
                                                                 else:
-                                                                	 
-                                                                		IFC = (
-	                                                                    "0"
-	                                                                    +
-	                                                                    "1"
-	                                                                    + length_tree_after2
-	                                                                    + binary_representation
-	                                                                    + binary_representation_before_long1
-	                                                                    + length_tree_after
-	
-	                                                                )
-                                                                	
-
+                                                                	IFC="1"+T8
                                                                 # print(length_tree_after2)
                                                                 # print(length_tree_after)
                                                                 # print(binary_representation_before_long1)
@@ -580,7 +577,7 @@ class compression:
                                                                     == 3
                                                                 ):
                                                                     T10 += IFC
-                                                                    print(IFC)
+                                                                    #print(IFC)
                                                                 else:
                                                                     
                                                                     num2 = int(
@@ -826,12 +823,12 @@ class compression:
                                             # print(binary_representation_before_long)#long after
 
                                             # print(binary_to_number_number_after)#binary represation
-                                            if INFO[block:block+1]=="0":
-                                            	find_v=0
-                                            	
-                                            elif INFO[block:block+1]=="1":
-                                            	find_v=1  
-                                            block+=1                                       	
+                                            if INFO[block:block+1]=="1":
+                                            	find_c_v=0
+                                            else:
+                                            	find_c_v=1
+                                            block+=1
+                                            
                                             Bif1 = int(
                                                 (INFO[block : block + 3]), 2
                                             )
@@ -982,15 +979,11 @@ class compression:
                                                                     count_number
                                                                     - 1
                                                                 )
-                                                                print(count_number)
-                                                                if find_v==1:
-                                                                	count_number+=384
-                                                                print(count_number)
-                                                                
+                                                                if find_c_v==1:
+                                                                	count_number=count_number+384
                                                                 count_number += (
                                                                     1
                                                                 )
-                                                               
                                                                 if (
                                                                     count_number
                                                                     == 2**24
