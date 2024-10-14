@@ -452,6 +452,8 @@ class compression:
                                                                     1
                                                                 )
                                                                 finish = 2
+                                                                
+                                                            #print(num)
                                                             if (
                                                                 length_tree < 8
                                                                 and binary_representation_before
@@ -459,7 +461,7 @@ class compression:
                                                                 and times_after
                                                                 == times
                                                                 and Bif1 == Bif2
-                                                                and Bi == Bi3
+                                                                and Bi == Bi3 or num>2**24
                                                             ):
                                                                 finish1 = 1
                                                                 # print("binary_representation_before_long")
@@ -520,9 +522,11 @@ class compression:
                                                                     length_tree_after1,
                                                                     "03b",
                                                                 )
+                                                                if count_number>2**24:
+                                                                	IFC="1"+ T8
 
                                                                 # print(binary_representation_before)
-                                                                if count_number+384==num_c:
+                                                                elif count_number+384==num_c:
                                                                 	count_number=count_number+384
                                                                 
 
