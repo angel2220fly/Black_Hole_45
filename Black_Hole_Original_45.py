@@ -593,7 +593,7 @@ class compression:
                                                                         
                                                                         	"1"+IFC)         
                                               
-                                                                    times_compress += 1
+                                                                   
 
                                     INFO = T10
                                     T8 = T10
